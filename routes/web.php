@@ -38,4 +38,5 @@ Route::resource('educations', EducationController::class);
 Route::resource('experience', ExperienceController::class);
 Route::resource('blog', BlogController::class);
 Route::resource('users', UserController::class);
+Route::resource('admin', UserController::class)->middleware('PreventDeletion');
 ?>

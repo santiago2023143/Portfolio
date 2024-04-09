@@ -24,17 +24,7 @@
     <form action="{{ route('users.update',$user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <!-- <div class="row mt-4">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="role">Role:</label>
-                    <input type="text" name="role" value="{{ $user->role }}" class="form-control" placeholder="Enter Role">
-                    @error('role')
-                     <div class="alert alert-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div> -->
-   
+        <div class="row mt-4">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="name">User Name:</label>
@@ -44,10 +34,8 @@
                     @enderror
                 </div>
             </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-12">
+            
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" name="email" value="{{ $user->email }}" class="form-control" placeholder="Enter Email">
@@ -57,12 +45,22 @@
                 </div>
             </div>
         </div>
+
+        <!-- <div class="col-md-6">
+                <div class="form-group">
+                    <label for="email">Role:</label>
+                    <input type="role" name="role" value="{{ $user->role }}" class="form-control" placeholder="Enter Role">
+                    @error('role')
+                      <div class="alert alert-danger mt-1">{{ $message }}</div>
+                   @enderror
+                </div>
+            </div>
+        </div> -->
         
         <div class="row">
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a class="btn btn-primary" href="{{ route('users.index') }}">Back</a>
-
             </div>
         </div>
     </form>

@@ -288,75 +288,99 @@
 
   <!-- ======= Contact Section ======= -->
   <section id="contact" class="contact">
-    <div class="container">
+  <div class="container">
 
-      <div class="section-title">
-        <h2>Contact</h2>
-        <p>Contact Me</p>
-      </div>
-
-      <div class="row mt-2">
-
-        <div class="col-md-6 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-map"></i>
-            <h3>My Address</h3>
-            <p>Catandog 1 Hilongos Leyte</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-share-alt"></i>
-            <h3>Social Profiles</h3>
-            <div class="social-links">
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 mt-4 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-envelope"></i>
-            <h3>Email Me</h3>
-            <p>w.santiago091601@gmail.com</p>
-          </div>
-        </div>
-        <div class="col-md-6 mt-4 d-flex align-items-stretch">
-          <div class="info-box">
-            <i class="bx bx-phone-call"></i>
-            <h3>Call Me</h3>
-            <p>0938 035 7529</p>
-          </div>
-        </div>
-      </div>
-
-      <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
-        <div class="row">
-          <div class="col-md-6 form-group">
-            <input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name" required>
-          </div>
-          <div class="col-md-6 form-group mt-3 mt-md-0">
-            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" required>
-          </div>
-        </div>
-        <div class="form-group mt-3">
-          <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
-        </div>
-        <div class="form-group mt-3">
-          <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-        </div>
-        <div class="my-3">
-          <div class="loading">Loading</div>
-          <div class="error-message"></div>
-          <div class="sent-message">Your message has been sent. Thank you!</div>
-        </div>
-        <div class="text-center"><button type="submit">Send Message</button></div>
-      </form>
-
+    <div class="section-title">
+      <h2>Contact</h2>
+      <p>Contact Me</p>
     </div>
-  </section><!-- End Contact Section -->
+
+    <div class="row mt-2">
+      <div class="col-md-6 d-flex align-items-stretch">
+        <div class="info-box">
+          <i class="bx bx-map"></i>
+          <h3>My Address</h3>
+          <p>Catandog 1 Hilongos Leyte</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
+        <div class="info-box">
+          <i class="bx bx-share-alt"></i>
+          <h3>Social Profiles</h3>
+          <div class="social-links">
+            <a href="https://www.facebook.com/" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/?hl=en" class="instagram"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mt-4 d-flex align-items-stretch">
+        <div class="info-box">
+          <i class="bx bx-envelope"></i>
+          <h3>Email Me</h3>
+          <p>w.santiago091601@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 mt-4 d-flex align-items-stretch">
+        <div class="info-box">
+          <i class="bx bx-phone-call"></i>
+          <h3>Call Me</h3>
+          <p>0938 035 7529</p>
+        </div>
+      </div>
+    </div>
+
+    <form name="submit-to-google-sheet" action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
+      <div class="row">
+        <div class="col-md-6 form-group">
+          <input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name" required>
+        </div>
+        <div class="col-md-6 form-group mt-3 mt-md-0">
+          <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" required>
+        </div>
+      </div>
+      <div class="form-group mt-3">
+        <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+      </div>
+      <div class="form-group mt-3">
+        <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+      </div>
+      <div class="my-3">
+        <div class="error-message"></div>
+      </div>
+      <div class="text-center">
+        <button type="submit">Send Message</button>
+      </div>
+    <span id="msg"></span>
+
+    </form>
+
+
+    <script src="assets/js/main.js"></script>
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbw4YAHSVl_ldllMUNzWebtA0GkGRHLySIiCrJ-M9HLMBL7q_ATMdoC00-NPcHYjURKX3A/exec';
+      const form = document.forms['submit-to-google-sheet'];
+      const msg = document.getElementById("msg");
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+          .then(response => {
+            msg.innerHTML = "Message sent successfully";
+            setTimeout(function() {
+              msg.innerHTML = "";
+            }, 5000);
+            form.reset();
+          })
+          .catch(error => console.error('Error!', error.message));
+      });
+    </script>
+  </div>
+</section>
+
+  <!-- End Contact Section -->
 
  
 
@@ -370,8 +394,7 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
+  
 </body>
 
 </html>

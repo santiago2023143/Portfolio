@@ -24,6 +24,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+Route::middleware(['checkRole:admin'])->group(function () {
+    Route::resource('users', UserController::class);
+    
+    });
+    
         
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/', FrontendController::class);

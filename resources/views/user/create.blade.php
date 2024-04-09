@@ -19,13 +19,13 @@
             @endif
             <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <!-- <div class="form-group">
+                <div class="form-group">
                     <label for="role">Role:</label>
                     <input type="text" name="role" id="role" class="form-control" placeholder="Enter Role">
                     @error('role')
                         <div class="alert alert-danger mt-1">{{ $message }}</div>
                     @enderror
-                </div> -->
+                </div>
                 <div class="form-group">
                     <label for="name">User Name:</label>
                     <input type="text" name="name" id="name" class="form-control" placeholder="Enter User Name">

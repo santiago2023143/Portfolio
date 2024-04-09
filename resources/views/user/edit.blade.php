@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <!-- <div class="col-md-6">
+        <div class="col-md-6">
                 <div class="form-group">
                     <label for="email">Role:</label>
                     <input type="role" name="role" value="{{ $user->role }}" class="form-control" placeholder="Enter Role">
@@ -55,7 +55,7 @@
                    @enderror
                 </div>
             </div>
-        </div> -->
+        </div>
         
         <div class="row">
             <div class="col-md-12">

@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         
         $users = User::get();
-        return view('user.index', compact('users'));
+        return view('user.index', compact('users'))->with('i');
     }
 
     /**

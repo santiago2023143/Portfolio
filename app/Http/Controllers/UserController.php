@@ -15,8 +15,12 @@ class UserController extends Controller
     public function index()
     {
         
-        $users = User::get();
-        return view('user.index', compact('users'))->with('i');
+      
+        if(auth()->user()->role == 'Admin' || auth()->user()->role == 'spectator'){
+            $users = User::get()->where('role', 'spectator');
+            return view('user.index', compact('users'))->with('i');
+        }
+      
     }
 
     /**
@@ -25,7 +29,12 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('user.create');
+     if(auth()->user()->role == 'spectator'){
+        abort(404);
+     }else{
+        return view('user.create'); 
+     }
+        
     }
 
     /**
@@ -36,7 +45,7 @@ class UserController extends Controller
         //
        user::create($request->all());
        return redirect()->route('users.index');  
-    }
+    }   
 
     /**
      * Display the specified resource.
@@ -51,7 +60,15 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view ('user.edit', compact('user'));
+        if(auth()->user()->role == 'spectator'){
+            abort(404);
+        }else{
+            if($user->role == 'Admin'){
+                abort(404);
+            }         
+            return view ('user.edit', compact('user'));
+        }
+        
     }
 
     /**
@@ -71,8 +88,16 @@ class UserController extends Controller
     public function destroy(User $user): RedirectResponse 
     {
         //
-        $user->delete();
-        return redirect()->route('users.index');
+        if(auth()->user()->role == 'spectator'){
+            abort(404);
+        }else{
+            if($user->role == 'Admin'){
+                abort(404);
+            }         
+            $user->delete();
+            return redirect()->route('users.index');  
+        }
+       
         
     }
 }

@@ -48,7 +48,12 @@ class ExperienceController extends Controller
      */
     public function edit(Experience $experience)
     {
-        return view ('experience.edit', compact('experience'));
+        if(auth()->user()->role == 'Admin'){
+            return view ('experience.edit', compact('experience')); 
+    
+            }else{
+                abort(404);
+            }
     }
 
     /**
@@ -65,7 +70,12 @@ class ExperienceController extends Controller
      */
     public function destroy(Experience $experience)
     {
-        $experience->delete();
-        return redirect()->route('experience.index');
+        if(auth()->user()->role == 'Admin'){
+            $experience->delete();
+            return redirect()->route('experience.index');
+        }else{
+            abort(404);
+        }
+        
     }
 }

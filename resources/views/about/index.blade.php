@@ -30,7 +30,9 @@
                     <th scope="col">Phone</th>
                     <th scope="col">Email</th>
                     <th scope="col">Degree</th>
+                    @if(auth()->user()->role == 'Admin')
                     <th scope="col">Actions</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -46,6 +48,7 @@
                     <td>{{ $info->phone }}</td>
                     <td>{{ $info->email }}</td>
                     <td>{{ $info->degree }}</td>
+                    @if(auth()->user()->role == 'Admin')
                     <td>
                         <div class="d-flex">
                             <a class="btn btn-primary btn-sm mr-2" href="{{ route('about.edit', $info->id) }}">Edit</a>
@@ -56,6 +59,7 @@
                             </form>
                         </div>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>

@@ -6,7 +6,9 @@
         <div class="col-lg-12">
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Experience</h2>
+                @if(auth()->user()->role == 'Admin')
                 <a class="btn btn-success" href="{{ route('experience.create') }}">Create Experience</a>
+                @endif
             </div>
         </div>
     </div>
@@ -25,7 +27,9 @@
                     <th scope="col">Title</th>
                     <th scope="col">Year Created</th>
                     <th scope="col">Description</th>
+                    @if(auth()->user()->role == 'Admin')
                     <th scope="col">Actions</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +39,7 @@
                     <td>{{ $exp->title }}</td>
                     <td>{{ $exp->year_created }}</td>
                     <td>{{ $exp->description }}</td>
+                    @if(auth()->user()->role == 'Admin')
                     <td>
                         <form action="{{ route('experience.destroy', $exp->id) }}" method="POST">
                             <a class="btn btn-primary btn-sm" href="{{ route('experience.edit', $exp->id) }}">Edit</a>
@@ -44,6 +49,7 @@
 
                         </form>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>

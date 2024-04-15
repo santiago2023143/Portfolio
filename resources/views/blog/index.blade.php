@@ -7,7 +7,9 @@
         <div class="col-lg-12 margin-tb">
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Blog</h2>
+                @if(auth()->user()->role == 'Admin')
                 <a class="btn btn-success" href="{{ route('blog.create') }}">Create Blog</a>
+                @endif
             </div>
         </div>
     </div>
@@ -24,7 +26,9 @@
                 <th scope="col">Title</th>
                 <th scope="col">Date</th>
                 <th scope="col">Details</th>
+                @if(auth()->user()->role == 'Admin')
                 <th scope="col">Actions</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -41,6 +45,7 @@
                 <td>{{ $blogs->title }}</td>
                 <td>{{ $blogs->date }}</td>
                 <td>{{ $blogs->details }}</td>
+                @if(auth()->user()->role == 'Admin')
                 <td>
                     <form action="{{ route('blog.destroy', $blogs->id) }}" method="POST">
                         <a class="btn btn-primary btn-sm" href="{{ route('blog.edit', $blogs->id) }}">Edit</a>
@@ -49,6 +54,7 @@
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Blog?')">Delete</button>
                     </form>
                 </td>
+                @endif
             </tr>
             @endforeach
         </tbody>

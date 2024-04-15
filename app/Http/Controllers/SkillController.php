@@ -56,8 +56,13 @@ class SkillController extends Controller
     public function edit(string $id)
     {
         //
-       $skills = Skill::find($id);
-        return view('skill.edit', compact('skills'));  
+        if(auth()->user()->role == 'Admin'){
+            $skills = Skill::find($id);
+            return view('skill.edit', compact('skills'));  
+
+        }else{
+            abort(404);
+        }
     }
 
     /**
@@ -77,8 +82,13 @@ class SkillController extends Controller
     public function destroy(string $id)
     {
         //
-        $delete = Skill::find($id);
-        $delete->delete();
-        return redirect()->route('skill.index');
+        if(auth()->user()->role == 'Admin'){
+            $delete = Skill::find($id);
+            $delete->delete();
+            return redirect()->route('skill.index');
+        }else{
+            abort(404);
+        }
+        
     }
 }

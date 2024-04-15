@@ -66,7 +66,11 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         //
-        return view('blog.edit', compact('blog'));
+        if(auth()->user()->role == 'Admin'){
+            return view('blog.edit', compact('blog'));
+            }else{
+                abort(404);
+            }
     }
 
     /**
@@ -85,6 +89,12 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         //
+        if(auth()->user()->role == 'Admin'){
+            $blog->delete();
+            return redirect()->route('blog.index');  
+        }else{
+            abort(404);
+        }
         $blog->delete();
         return redirect()->route('blog.index');     
     }

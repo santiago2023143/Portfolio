@@ -7,7 +7,9 @@
         <div class="col-lg-12 margin-tb">
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Educational Attainment</h2>
+                @if(auth()->user()->role == 'Admin')
                 <a class="btn btn-success" href="{{ route('educations.create') }}">Create Education</a>
+                @endif
             </div>
         </div>
     </div>
@@ -24,7 +26,9 @@
                 <th scope="col">Year Graduated</th>
                 <th scope="col">Name of School</th>
                 <th scope="col">Details</th>
+                @if(auth()->user()->role == 'Admin')
                 <th scope="col">Actions</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -35,6 +39,8 @@
                 <td>{{ $educations->year_graduated }}</td>
                 <td>{{ $educations->name_of_school }}</td>
                 <td>{{ $educations->details }}</td>
+                @if(auth()->user()->role == 'Admin')
+
                 <td>
                     <form action="{{ route('educations.destroy', $educations->id) }}" method="POST">
                         <!-- <div class="btn-group" role="group" aria-label="Education Actions"> -->
@@ -46,6 +52,7 @@
                         
                     </form>
                 </td>
+                @endif
             </tr>
             @endforeach
         </tbody>

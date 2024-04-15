@@ -46,13 +46,9 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-                <div class="form-group">
-                    <label for="email">Role:</label>
-                    <input type="role" name="role" value="{{ $user->role }}" class="form-control" placeholder="Enter Role">
-                    @error('role')
-                      <div class="alert alert-danger mt-1">{{ $message }}</div>
-                   @enderror
+     
+                    <input type="hidden" name="role" value="{{ $user->role }}" class="form-control" placeholder="Enter Role">
+                    
                 </div>
             </div>
         </div>

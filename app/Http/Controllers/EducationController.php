@@ -48,7 +48,12 @@ class EducationController extends Controller
      */
     public function edit(Education $education)
     {
-        return view ('education.edit', compact('education'));
+        if(auth()->user()->role == 'Admin'){
+            return view ('education.edit', compact('education'));
+    
+            }else{
+                abort(404);
+            }
     }
 
     /**
@@ -65,7 +70,12 @@ class EducationController extends Controller
      */
     public function destroy(Education $education)
     {
-        $education->delete();
+        if(auth()->user()->role == 'Admin'){
+            $education->delete();
         return redirect()->route('educations.index');
+        }else{
+            abort(404);
+        }
+        
     }
 }

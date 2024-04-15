@@ -12,6 +12,7 @@ class AboutController extends Controller
     /**
      * Display a listing of the resource.
      */
+    
     public function index()
     {
         $about = About::get();
@@ -48,7 +49,12 @@ class AboutController extends Controller
      */
     public function edit(About $about)
     {
-        return view ('about.edit', compact('about'));
+        if(auth()->user()->role == 'Admin'){
+            return view ('about.edit', compact('about'));
+        }else{
+            abort(404);
+        }
+        
     }
 
     /**
@@ -65,7 +71,11 @@ class AboutController extends Controller
      */
     public function destroy(about $about)
     {
+        if(auth()->user()->role == 'Admin'){
         $about->delete();
         return redirect()->route('about.index');
+        }else{
+            abort(404);
+        }
     }
 }

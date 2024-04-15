@@ -26,17 +26,17 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::middleware(['checkRole:admin'])->group(function () {
     Route::resource('users', UserController::class);
+    Route::resource('about', AboutController::class);
     
     });
     
         
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/', FrontendController::class);
-Route::resource('about', AboutController::class);
+
 Route::resource('skill', SkillController::class);
 Route::resource('educations', EducationController::class);
 Route::resource('experience', ExperienceController::class);
 Route::resource('blog', BlogController::class);
 Route::resource('users', UserController::class);
-Route::resource('admin', UserController::class)->middleware('PreventDeletion');
 ?>

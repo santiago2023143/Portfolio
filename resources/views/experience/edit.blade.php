@@ -22,12 +22,12 @@
     </div>
     @endif
    
-    <form action="{{ route('experience.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('experience.update', $experience->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-
+@method('PUT')
         <div class="form-group">
             <label for="title">Title:</label>
-            <input type="text" name="title" class="form-control" placeholder="Title">
+            <input type="text" name="title" class="form-control" value="{{$experience->title}}" placeholder="Title">
             @error('title')
             <div class="alert alert-danger mt-1">{{ $message }}</div>
             @enderror
@@ -35,7 +35,7 @@
 
         <div class="form-group">
             <label for="year_created">Year Created:</label>
-            <input type="text" name="year_created" class="form-control" placeholder="Year Created">
+            <input type="text" name="year_created" class="form-control" value="{{$experience->year_created}}"placeholder="Year Created">
             @error('year_created')
             <div class="alert alert-danger mt-1">{{ $message }}</div>
             @enderror
@@ -43,7 +43,7 @@
 
         <div class="form-group">
             <label for="description">Description:</label>
-            <input type="text" name="description" class="form-control" placeholder="Description">
+            <input type="text" name="description" class="form-control" value="{{$experience->description}}"placeholder="Description">
             @error('description')
             <div class="alert alert-danger mt-1">{{ $message }}</div>
             @enderror

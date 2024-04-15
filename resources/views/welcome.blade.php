@@ -89,10 +89,12 @@
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
           <h3></h3>
           @foreach($about as $abouts)
+      <!-- <div class="section-title">
+        <p><em>Description:</em></p>
+      </div><br> -->
 
-          <p><em>
-          <h4>{{$abouts->description}}</h4></em>
-          </p>
+            
+          <h4>{{$abouts->description}}</h4>
           <div class="row">
             <div class="col-lg-6">
               <ul>
@@ -130,10 +132,7 @@
 
         <div class="col-lg-6">
 
-          
-
-         @foreach($skill as $skills)
-
+        @foreach($skill as $skills)
           <div class="progress">
             <span class="skill">{{$skills->name}} <i class="val">{{$skills->percentage}}%</i></span>
             <div class="progress-bar-wrap">
